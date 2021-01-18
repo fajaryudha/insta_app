@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -56,7 +57,9 @@ class _RegisterState extends State<Register> {
     // log("data $data");
     String keterangan = data['keterangan'];
     if (status == 200) {
-      _showAlert(keterangan, 0, context);
+      Timer(Duration(seconds: 3), () {
+        _showAlert(keterangan, 0, context);
+      });
       setState(() {
         Navigator.of(context)
             .push(MaterialPageRoute(builder: (context) => Login()));
@@ -129,7 +132,7 @@ class _RegisterState extends State<Register> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text("Error"),
+              title: Text("${title}"),
               content: Text("${data}"),
             ));
   }
